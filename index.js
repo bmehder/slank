@@ -18,11 +18,11 @@ export const explicit = value => {
 }
 
 export const implicit = fn => {
-	const derived = explicit()
+	const _implicit = explicit()
 	fx(() => {
-		derived.value = fn()
+		_implicit.value = fn()
 	})
-	return derived
+	return _implicit
 }
 
 export const fx = fn => {
