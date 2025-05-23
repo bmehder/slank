@@ -95,13 +95,9 @@ setInterval(() => count.value++, 1000)
 
 ---
 
-## 🏠 CDN Usage
+## 🙏 Acknowledgements
 
-Use it directly from a CDN like esm.sh:
-
-```js
-import { explicit, implicit, fx } from 'https://esm.sh/slank'
-```
+The core design of Slank was inspired by Joy of Code — an excellent resource for learning reactive programming concepts in JavaScript.
 
 ---
 

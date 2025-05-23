@@ -30,3 +30,5 @@ export const fx = fn => {
 	fn()
 	subscriber = null
 }
+
+export const tick = fn => Promise.resolve().then(() => requestAnimationFrame(fn))

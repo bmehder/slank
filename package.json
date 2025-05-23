@@ -1,6 +1,6 @@
 {
 	"name": "slank",
-	"version": "2.1.2",
+	"version": "3.0.0",
 	"description": "No framework. Just Signals.",
 	"main": "index.js",
 	"scripts": {
@@ -14,6 +14,5 @@
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/bmehder/slank/issues"
-	},
-	"homepage": "https://mehder.com/slank/"
+	}
 }
