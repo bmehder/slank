@@ -1,14 +1,15 @@
 # Slank
 
-Slank is a dead-simple reactive signal system for JavaScript — no tooling, no build steps, no opinions.
+**Slank** is a dead-simple reactive signal system for JavaScript — no tooling, no build steps, no opinions.
 
-It gives you just three primitives:
+It gives you just four primitives:
 
-- explicit() – create manually updated reactive values  
-- implicit() – create derived values that automatically update  
-- fx() – create reactive effects that re-run when dependencies change  
+- `explicit()` – create manually updated reactive values  
+- `implicit()` – create derived values that automatically update  
+- `fx()` – create reactive effects that re-run when dependencies change  
+- `tick()` – schedule a function to run after the DOM is painted
 
-⚡ Tiny. Tool-free. Trivially composable. Reactive state that stays out of your way.
+> ⚡ Tiny. Tool-free. Trivially composable. Reactive state that stays out of your way.
 
 ---
 
@@ -21,13 +22,14 @@ npm install slank
 Or load it from a CDN:
 
 ```js
-import { explicit, implicit, fx } from 'https://esm.sh/slank'
+import { explicit, implicit, fx, tick } from 'https://esm.sh/slank'
 ```
+
 ---
 
 ## 🧠 Core API
 
-### explicit(initialValue)
+### `explicit(initialValue)`
 
 Creates a reactive value that can be read and written.
 
@@ -40,7 +42,7 @@ console.log(count.value)  // read
 
 ---
 
-### implicit(fn)
+### `implicit(fn)`
 
 Creates a derived value that updates automatically when dependencies change.
 
@@ -52,15 +54,29 @@ console.log(double.value) // 0 → 2 → 4 as count changes
 
 ---
 
-### fx(fn)
+### `fx(fn)`
 
-Runs a function and re-runs it whenever any signals it read change.
+Runs a function and re-runs it whenever any signals it reads change.
 
 ```js
 fx(() => {
   console.log(`Count is ${count.value}, double is ${double.value}`)
 })
 ```
+
+---
+
+### `tick(fn)`
+
+Runs a function after the DOM is painted. Useful when working with dynamically injected HTML or doing layout measurements.
+
+```js
+tick(() => {
+  const height = document.querySelector('.box')?.offsetHeight
+  console.log('Box height:', height)
+})
+```
+
 ---
 
 ## 🧩 Example
@@ -75,14 +91,15 @@ fx(() => {
 
 setInterval(() => count.value++, 1000)
 ```
+
 ---
 
 ## ✨ Why Slank?
 
-- Minimal: Fits in your head
-- Declarative: You write what depends on what — Slank handles the rest  
-- Zero-config: No compiler, no JSX, no weird syntax  
-- Just works in vanilla JS, small projects, or anywhere else  
+- **Minimal**: Fits in your head  
+- **Declarative**: You write what depends on what — Slank handles the rest  
+- **Zero-config**: No compiler, no JSX, no weird syntax  
+- **Just works** in vanilla JS, small projects, or anywhere else
 
 ---
 
@@ -91,13 +108,13 @@ setInterval(() => count.value++, 1000)
 - Quick UIs without a framework  
 - Micro-interactions with state  
 - State + derived logic in web components  
-- Building your own reactive framework  
+- Building your own reactive framework
 
 ---
 
 ## 🙏 Acknowledgements
 
-The core design of Slank was inspired by Joy of Code — an excellent resource for learning reactive programming concepts in JavaScript.
+The core design of Slank was inspired by [Joy of Code](https://www.youtube.com/@joyofcode) — an excellent resource for learning reactive programming concepts in JavaScript.
 
 ---
 
